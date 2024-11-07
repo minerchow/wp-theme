@@ -5,16 +5,15 @@
                 <?php 
                     while(have_posts()){
                         the_post();
-                        echo '<div class="list">';
-                        the_title('<h2 class="title"><a target="_blank" href="'.get_permalink().'">','</a></h2>');
-                        the_excerpt();
-                        echo '<div>'.get_the_author().'</div>';
-                        echo '<div>
-                                <span>'.get_the_date('Y-m-d').'</span>
-                                <a target="_blank" href="'.get_permalink().'"><span>查看详情</span></a>
-                            </div>';
-                        echo '</div>';    
+                        get_template_part('templates/cons');
+                            
                     }
+                    the_posts_pagination( array(
+                        'mid_size' => 2, //当前页码数的 两边 显示几个页码。
+                        'prev_text' =>'上一页', //上一页
+                        'next_text' =>'下一页', //下一页
+                        'screen_reader_text'=>' '
+                        ) );
                 ?>
             </div>
         </div>
