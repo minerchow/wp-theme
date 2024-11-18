@@ -20,7 +20,10 @@
             'next_text' => '<span class="nav-subtitle">下一篇：</span> <span class="nav-title">%title</span>',
             )
     ); ?>
-                </div>    
+                </div>   
+                <div class="card-box comments">
+                    <?php comments_template(); ?>
+                </div> 
             </div>
            <div class="sider-bar">
             <?php get_sidebar(); ?>

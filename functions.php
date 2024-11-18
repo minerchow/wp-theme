@@ -40,4 +40,51 @@
     );
 }
 add_action( 'widgets_init', 'my_custom_sidebar' );
+//评论模板
+function custom_comment($comment, $args, $depth){
+    $GLOBALS['comment'] = $comment; 
+    // var_dump($args);
+    $ava = get_avatar($comment,'48');
+    $author_link = get_comment_author_link();
+    // $author = get_comment_author();
+    // echo $author;
+
+    echo '
+    <li class="comment-list">
+        <div class="avatar">
+        '.$ava.'
+        </div>
+        <div class="comment_content">
+            <div class="comment_author">
+                '.$author_link.'
+            </div>
+            
+            <div class="comment_time">
+           '.get_comment_time('Y-m-d H:i:s').'
+            </div>
+        ';
+        ?>
+            <div class="edit-line">
+                <?php 
+                    // 显示评论的编辑链接 
+                    edit_comment_link( '编辑', '<p class="edit-link">', '</p>' ); 
+                ?>
+                <div class="reply">
+                    <?php 
+                        // 显示评论的回复链接 
+                        comment_reply_link( array_merge( $args, array( 
+                        'reply_text' =>  '回复', 
+                        'after'      =>  ' <span>&darr;</span>', 
+                        'depth'      =>  $depth, 
+                        'max_depth'  =>  $args['max_depth'] ) ) ); 
+                    ?>
+                </div>
+            </div>
+            <?php
+              comment_text()
+            ?>
+        </div>
+    </li>
+    <?php
+}
 ?>
